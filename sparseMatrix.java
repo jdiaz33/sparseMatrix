@@ -28,6 +28,12 @@ class Node {
 	}
 }
 
+class linkedList {
+	protected Node start;
+	protected Node end;
+	public int size;
+}
+
 public class sparseMatrix {
 
 	//public int n;
