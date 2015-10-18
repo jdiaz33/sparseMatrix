@@ -18,7 +18,7 @@ class Node {
 	protected Node nextRow;
 	protected Node nextCol;
 	
-	//Constructor
+	//Node constructor
 	public Node (int r, int c, int v, Node nextR, Node nextC) {
 		row = r;
 		col = c;
@@ -32,6 +32,13 @@ class linkedList {
 	protected Node start;
 	protected Node end;
 	public int size;
+	
+	//linkedList constructor
+	public linkedList () {
+		start = null;
+		end = null;
+		size = 0;
+	}
 }
 
 public class sparseMatrix {
