@@ -40,6 +40,7 @@ class linkedList {
 		size = 0;
 	}
 	
+	//check if the list of nodes is empty
 	public boolean isEmpty() {
 		if (start == null) {
 			return true;
@@ -47,6 +48,12 @@ class linkedList {
 		else {
 			return false;
 		}
+	}
+	
+	public void insertFirstNode(Node n) {
+		start = n;
+		end = n;
+		size ++;
 	}
 }
 
@@ -100,7 +107,12 @@ public class sparseMatrix {
 			}
 			
 			Node node = new Node(row, col, val, null, null);
-			
+			if (list.isEmpty() == true) {
+				list.insertFirstNode(node);
+			}
+			else {
+				//insert node at the end
+			}
 			
 		} while ( input == 1 && inputCnt < n * n);
 	}
