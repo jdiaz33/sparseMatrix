@@ -52,6 +52,40 @@ public class sparseMatrix {
 		
 		System.out.println("Enter the size of the Matrix: ");
 		int n = keyBoard.nextInt();
-		System.out.println("The size of your Matrix is: " + n + " x " + n);
+		System.out.println("Your Matrix is a: " + n + " x " + n + "matrix");
+		
+		int input, row, col, val = 0;
+		int inputCnt = 0;
+		
+		do {
+			System.out.println("Type 1 to enter triples or -1 to exit");
+			input = keyBoard.nextInt();
+			if (input == 1) {
+				System.out.println("Enter row < " + n + ": ");
+				row = keyBoard.nextInt();
+				if (row >= n){
+					System.out.println("Wrong input.");
+					break;
+				}
+				System.out.println("Enter column < " + n + ": ");
+				col = keyBoard.nextInt();
+				if (col >= n) {
+					System.out.println("Wrong input.");
+					break;
+				}
+				System.out.println("Enter value: ");
+				val = keyBoard.nextInt();
+			}
+			else if(input == -1){break;}
+			else {
+				System.out.println("Wrong input. Try again..."); 
+				input = 1;
+			}
+			inputCnt ++;
+		} while ( input == 1 && inputCnt < n * n);
+		
+		
+		
+		linkedList list = new linkedList();
 	}
 }
