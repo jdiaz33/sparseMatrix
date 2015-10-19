@@ -39,6 +39,15 @@ class linkedList {
 		end = null;
 		size = 0;
 	}
+	
+	public boolean isEmpty() {
+		if (start == null) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
 
 public class sparseMatrix {
@@ -49,12 +58,13 @@ public class sparseMatrix {
 		System.out.println("Hello, and Welcome to the world of Matrix");
 		
 		Scanner keyBoard = new Scanner(System.in);
+		linkedList list = new linkedList();
 		
 		System.out.println("Enter the size of the Matrix: ");
 		int n = keyBoard.nextInt();
-		System.out.println("Your Matrix is a: " + n + " x " + n + "matrix");
+		System.out.println("Your Matrix is a: " + n + " x " + n + " matrix");
 		
-		int input, row, col, val = 0;
+		int input = 0; int row = 0; int col = 0; int val = 0;
 		int inputCnt = 0;
 		
 		do {
@@ -67,25 +77,31 @@ public class sparseMatrix {
 					System.out.println("Wrong input.");
 					break;
 				}
+				
 				System.out.println("Enter column < " + n + ": ");
 				col = keyBoard.nextInt();
 				if (col >= n) {
 					System.out.println("Wrong input.");
 					break;
 				}
-				System.out.println("Enter value: ");
+				
+				System.out.println("Enter value within the range -9 to 9: ");
 				val = keyBoard.nextInt();
+				if (val < -9 || val > 9) {
+					System.out.println("Wrong input.");
+					break;
+				}
+				inputCnt ++;
 			}
 			else if(input == -1){break;}
 			else {
 				System.out.println("Wrong input. Try again..."); 
 				input = 1;
 			}
-			inputCnt ++;
+			
+			Node node = new Node(row, col, val, null, null);
+			
+			
 		} while ( input == 1 && inputCnt < n * n);
-		
-		
-		
-		linkedList list = new linkedList();
 	}
 }
