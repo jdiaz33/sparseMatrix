@@ -83,8 +83,29 @@ class linkedList {
 		size ++;
 	}
 	
-	public void printMatrix () {
+	public void printMatrix (int m) {
 		int x = 0;
+		int matrixSize = m * m;
+		
+		Node temp = start;
+		
+		for (int i = 0; i < m; i ++) {
+			for (int j = 0; j < m; j++) {
+				//System.out.print(i + " " + j + " ");
+				if(temp.getRow() == i && temp.getCol() == j) {
+					System.out.print(temp.getVal() + "\t");
+				}
+				else {
+					System.out.print("0\t");
+				}
+				
+				if (temp.getNextRow() != null) {
+					temp = temp.getNextRow();
+				}
+			}
+			System.out.print("\n");
+		}
+		
 		Node temp1 = start;
 		while(x < size) {
 			System.out.print("Node " + x + ":");
@@ -154,7 +175,7 @@ public class sparseMatrix {
 		} while ( input == 1 && inputCnt < n * n);
 		
 		System.out.println("before the end");
-		list.printMatrix();
+		list.printMatrix(n);
 	}
 	
 }
