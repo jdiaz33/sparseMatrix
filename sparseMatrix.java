@@ -26,6 +26,24 @@ class Node {
 		nextRow = nextR;
 		nextCol = nextC;
 	}
+	
+	public void setNextNode(Node node) {
+		//if(node.getRow() > row) {
+		//	nextRow = node;
+		//}
+		//else if (node.getCol() > col) {
+		//	nextCol = node;
+		//}
+		
+		nextRow = node;
+		nextCol = node;
+	}
+	
+	public int getRow () { return row; }
+	public int getCol () { return col; }
+	public int getVal () { return val; }
+	public Node getNextRow () { return nextRow; }
+	public Node getNextCol () { return nextCol; }
 }
 
 class linkedList {
@@ -43,6 +61,7 @@ class linkedList {
 	//check if the list of nodes is empty
 	public boolean isEmpty() {
 		if (start == null) {
+			System.out.println("inside isEmpty");
 			return true;
 		}
 		else {
@@ -50,10 +69,31 @@ class linkedList {
 		}
 	}
 	
-	public void insertFirstNode(Node n) {
-		start = n;
-		end = n;
+	public void insertFirstNode(Node node) {
+		start = node;
+		end = node;
 		size ++;
+		System.out.println("inside insertFirst");
+	}
+	
+	public void insertLastNode(Node node) {
+		end.setNextNode(node);
+		end = node;
+		System.out.println("inside insertLast");
+		size ++;
+	}
+	
+	public void printMatrix () {
+		int x = 0;
+		Node temp1 = start;
+		while(x < size) {
+			System.out.print("Node " + x + ":");
+			System.out.println(temp1.getRow() + " " + temp1.getCol() + " " + temp1.getVal());
+			if(temp1.getNextRow() != null){
+				temp1 = temp1.getNextRow();
+			}
+			x++;
+		}	
 	}
 }
 
@@ -92,12 +132,8 @@ public class sparseMatrix {
 					break;
 				}
 				
-				System.out.println("Enter value within the range -9 to 9: ");
+				System.out.println("Enter value: ");
 				val = keyBoard.nextInt();
-				if (val < -9 || val > 9) {
-					System.out.println("Wrong input.");
-					break;
-				}
 				inputCnt ++;
 			}
 			else if(input == -1){break;}
@@ -106,14 +142,19 @@ public class sparseMatrix {
 				input = 1;
 			}
 			
-			Node node = new Node(row, col, val, null, null);
-			if (list.isEmpty() == true) {
-				list.insertFirstNode(node);
+			if (val != 0) {
+				Node node = new Node(row, col, val, null, null);
+				if (list.isEmpty() == true) {
+					list.insertFirstNode(node);
+				}
+				else {
+					list.insertLastNode(node);
+				}
 			}
-			else {
-				//insert node at the end
-			}
-			
 		} while ( input == 1 && inputCnt < n * n);
+		
+		System.out.println("before the end");
+		list.printMatrix();
 	}
+	
 }
