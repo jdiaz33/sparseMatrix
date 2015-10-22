@@ -28,13 +28,7 @@ class Node {
 	}
 	
 	public void setNextNode(Node node) {
-		//if(node.getRow() > row) {
-		//	nextRow = node;
-		//}
-		//else if (node.getCol() > col) {
-		//	nextCol = node;
-		//}
-		
+
 		nextRow = node;
 		nextCol = node;
 	}
@@ -61,7 +55,6 @@ class linkedList {
 	//check if the list of nodes is empty
 	public boolean isEmpty() {
 		if (start == null) {
-			System.out.println("inside isEmpty");
 			return true;
 		}
 		else {
@@ -73,54 +66,69 @@ class linkedList {
 		start = node;
 		end = node;
 		size ++;
-		System.out.println("inside insertFirst");
 	}
 	
 	public void insertLastNode(Node node) {
 		end.setNextNode(node);
 		end = node;
-		System.out.println("inside insertLast");
 		size ++;
 	}
 	
 	public void printMatrix (int m) {
+		System.out.println("MATRIX: ");
 		int x = 0;
 		int matrixSize = m * m;
 		
 		Node temp = start;
+		boolean found;
 		
 		for (int i = 0; i < m; i ++) {
 			for (int j = 0; j < m; j++) {
-				//System.out.print(i + " " + j + " ");
-				if(temp.getRow() == i && temp.getCol() == j) {
-					System.out.print(temp.getVal() + "\t");
+				found = false;
+				while (temp.getNextRow() != null) {
+					if(temp.getRow() == i && temp.getCol() == j) {
+						System.out.print(temp.getVal() + "\t");
+						found = true;
+						temp = start;
+						break;
+					}
+					else {
+						temp = temp.getNextRow();
+					}
 				}
-				else {
-					System.out.print("0\t");
-				}
-				
-				if (temp.getNextRow() != null) {
-					temp = temp.getNextRow();
+				if (found == false) {
+					if (temp.getRow() == i && temp.getCol() == j) {
+						System.out.print(temp.getVal());
+						temp = start;
+					}
+					else {
+						System.out.print("0\t");
+						temp = start;
+					}
 				}
 			}
 			System.out.print("\n");
 		}
+	}
+	
+	public void printList() {
+		System.out.println("LIST OF NODES: ");
+		System.out.println("Row\t" + "Column\t" + "Value");
+		Node temp = start;
+		int x = 0;
 		
-		Node temp1 = start;
-		while(x < size) {
-			System.out.print("Node " + x + ":");
-			System.out.println(temp1.getRow() + " " + temp1.getCol() + " " + temp1.getVal());
-			if(temp1.getNextRow() != null){
-				temp1 = temp1.getNextRow();
+		while(x < size){
+			System.out.println(temp.getRow() + "\t" + temp.getCol() + "\t" + temp.getVal());
+			if(temp.getNextRow() != null) {
+				temp = temp.getNextRow();
 			}
 			x++;
-		}	
+		}
+		System.out.println("\n");
 	}
 }
 
 public class sparseMatrix {
-
-	//public int n;
 	
 	public static void main(String[] args) {
 		System.out.println("Hello, and Welcome to the world of Matrix");
@@ -174,7 +182,7 @@ public class sparseMatrix {
 			}
 		} while ( input == 1 && inputCnt < n * n);
 		
-		System.out.println("before the end");
+		list.printList();
 		list.printMatrix(n);
 	}
 	
