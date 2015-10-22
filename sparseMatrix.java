@@ -28,7 +28,6 @@ class Node {
 	}
 	
 	public void setNextNode(Node node) {
-
 		nextRow = node;
 		nextCol = node;
 	}
@@ -39,6 +38,8 @@ class Node {
 	public Node getNextRow () { return nextRow; }
 	public Node getNextCol () { return nextCol; }
 }
+
+/*********************************************************************************/
 
 class linkedList {
 	protected Node start;
@@ -75,15 +76,15 @@ class linkedList {
 	}
 	
 	public void printMatrix (int m) {
-		System.out.println("MATRIX: ");
+		//System.out.println("MATRIX: ");
 		int x = 0;
 		int matrixSize = m * m;
 		
 		Node temp = start;
 		boolean found;
 		
-		for (int i = 0; i < m; i ++) {
-			for (int j = 0; j < m; j++) {
+		for (int i = 1; i <= m; i ++) {
+			for (int j = 1; j <= m; j++) {
 				found = false;
 				while (temp.getNextRow() != null) {
 					if(temp.getRow() == i && temp.getCol() == j) {
@@ -98,7 +99,7 @@ class linkedList {
 				}
 				if (found == false) {
 					if (temp.getRow() == i && temp.getCol() == j) {
-						System.out.print(temp.getVal());
+						System.out.print(temp.getVal() + "\t");
 						temp = start;
 					}
 					else {
@@ -109,10 +110,11 @@ class linkedList {
 			}
 			System.out.print("\n");
 		}
+		System.out.println("\n");
 	}
 	
 	public void printList() {
-		System.out.println("LIST OF NODES: ");
+		//System.out.println("LIST OF NODES: ");
 		System.out.println("Row\t" + "Column\t" + "Value");
 		Node temp = start;
 		int x = 0;
@@ -127,6 +129,8 @@ class linkedList {
 		System.out.println("\n");
 	}
 }
+
+/*************************************************************************************/
 
 public class sparseMatrix {
 	
@@ -147,18 +151,20 @@ public class sparseMatrix {
 			System.out.println("Type 1 to enter triples or -1 to exit");
 			input = keyBoard.nextInt();
 			if (input == 1) {
-				System.out.println("Enter row < " + n + ": ");
+				System.out.println("Enter row: ");
 				row = keyBoard.nextInt();
-				if (row >= n){
+				if (row > n || row < 1){
 					System.out.println("Wrong input.");
+					//input = 1;
 					break;
 				}
 				
-				System.out.println("Enter column < " + n + ": ");
+				System.out.println("Enter column: ");
 				col = keyBoard.nextInt();
-				if (col >= n) {
+				if (col > n || col < 1) {
 					System.out.println("Wrong input.");
-					break;
+					input = 1;
+					//break;
 				}
 				
 				System.out.println("Enter value: ");
@@ -182,8 +188,29 @@ public class sparseMatrix {
 			}
 		} while ( input == 1 && inputCnt < n * n);
 		
+		System.out.println("LIST OF NODES IN A: ");
 		list.printList();
+		System.out.println("MATRIX A: ");
 		list.printMatrix(n);
+		
+		linkedList B = new linkedList();
+		for (int i = 1; i <= n; i++) {
+			for (int j = 1; j <= n; j++) {
+				if (i == j) {
+					Node nodeB = new Node(i, j, i, null, null);
+					if (B.isEmpty() == true) {
+						B.insertFirstNode(nodeB);
+					}
+					else {
+						B.insertLastNode(nodeB);
+					}
+				}
+			}
+		}
+		System.out.println("LIST OF NODES IN B: ");
+		B.printList();
+		System.out.println("MATRIX B: ");
+		B.printMatrix(n);
 	}
 	
 }
