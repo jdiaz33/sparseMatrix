@@ -76,7 +76,6 @@ class linkedList {
 	}
 	
 	public void printMatrix (int m) {
-		//System.out.println("MATRIX: ");
 		int x = 0;
 		int matrixSize = m * m;
 		
@@ -114,7 +113,6 @@ class linkedList {
 	}
 	
 	public void printList() {
-		//System.out.println("LIST OF NODES: ");
 		System.out.println("Row\t" + "Column\t" + "Value");
 		Node temp = start;
 		int x = 0;
@@ -164,7 +162,7 @@ public class sparseMatrix {
 				if (col > n || col < 1) {
 					System.out.println("Wrong input.");
 					input = 1;
-					//break;
+					break;
 				}
 				
 				System.out.println("Enter value: ");
@@ -211,6 +209,56 @@ public class sparseMatrix {
 		B.printList();
 		System.out.println("MATRIX B: ");
 		B.printMatrix(n);
+		
+		linkedList C = new linkedList();
+		for(int i = 1; i <= n; i++) {
+			for(int j = 1; j <= n; j++) {
+				if(i == ((j + 1) % n)){
+					val = (-2 * j) -1;
+					Node nodeC = new Node(i, j, val, null, null);
+					if (C.isEmpty() == true) {
+						C.insertFirstNode(nodeC);
+					}
+					else {
+						C.insertLastNode(nodeC);
+					}
+				}
+			}
+		}
+		System.out.println("LIST OF NODES IN C: ");
+		C.printList();
+		System.out.println("MATRIX C: ");
+		C.printMatrix(n);
+		
+		linkedList D = new linkedList();
+		for (int i = 1; i <= n; i++) {
+			for (int j = 1; j <= n; j++) {
+				if ((i % 2) == 0 && (j % 2) == 0) {
+					val = i + j;
+					Node nodeD = new Node(i, j, val, null, null);
+					if (D.isEmpty() == true) {
+						D.insertFirstNode(nodeD);
+					}
+					else {
+						D.insertLastNode(nodeD);
+					}
+				}
+				else if (j == 3) {
+					val = i * -1;
+					Node nodeD = new Node(i, j, val, null, null);
+					if(D.isEmpty() == true) {
+						D.insertFirstNode(nodeD);
+					}
+					else {
+						D.insertLastNode(nodeD);
+					}
+				}
+			}
+		}
+		System.out.println("LIST OF NODES IN D: ");
+		D.printList();
+		System.out.println("MATRIX D: ");
+		D.printMatrix(n);
 	}
 	
 }
