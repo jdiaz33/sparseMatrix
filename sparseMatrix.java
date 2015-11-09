@@ -287,6 +287,36 @@ public class sparseMatrix {
 		scalar(5, B, K, n);
 		System.out.println("MATRIX K = 5 * B: ");
 		K.printMatrix(n);
+		
+		//L = 8 * C
+		linkedList L = new linkedList();
+		scalar(8, C, L, n);
+		System.out.println("MATRIX L = 8 * C: ");
+		L.printMatrix(n);
+		
+		//M = 3 * G
+		linkedList M = new linkedList();
+		scalar(3, G, M, n);
+		System.out.println("MATRIX M = 3 * G: ");
+		M.printMatrix(n);
+		
+		//N = 2 * H
+		linkedList N = new linkedList();
+		scalar(2, H, N, n);
+		System.out.println("MATRIX N = 2 * H: ");
+		N.printMatrix(n);
+		
+		//O = 2 * M
+		linkedList O = new linkedList();
+		scalar(2, M, O, n);
+		System.out.println("MATRIX O = 2 * M: ");
+		O.printMatrix(n);
+		
+		//P = 3 * F
+		linkedList P = new linkedList();
+		scalar(3, F, P, n);
+		System.out.println("MATRIX P = 3 * F: ");
+		P.printMatrix(n);
 	}
 	
 /********************************* STATIC METHODS ******************************/
