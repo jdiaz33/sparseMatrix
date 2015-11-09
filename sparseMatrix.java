@@ -114,7 +114,7 @@ class linkedList {
 		System.out.println("\n");
 	}
 	
-	/*public void printList() {
+	public void printList() {
 		System.out.println("Row\t" + "Column\t" + "Value");
 		Node temp = start;
 		int x = 0;
@@ -127,7 +127,7 @@ class linkedList {
 			x++;
 		}
 		System.out.println("\n");
-	}*/
+	}
 	
 	public int getNodeVal(int i, int j){
 		Node temp = start;
@@ -282,6 +282,11 @@ public class sparseMatrix {
 		System.out.println("MATRIX J = G + H: ");
 		J.printMatrix(n);
 		
+		//K = 5 * B
+		linkedList K = new linkedList();
+		scalar(5, B, K, n);
+		System.out.println("MATRIX K = 5 * B: ");
+		K.printMatrix(n);
 	}
 	
 /********************************* STATIC METHODS ******************************/
@@ -300,7 +305,7 @@ public class sparseMatrix {
 								linkedList result,
 								int n){
 		for (int i = 1; i <= n; i++){
-			for (int j = 1; j<= n; j++){
+			for (int j = 1; j <= n; j++){
 				int x = matrix1.getNodeVal(i, j);
 				int y = matrix2.getNodeVal(i, j);
 				int z = x + y;
@@ -318,13 +323,27 @@ public class sparseMatrix {
 								linkedList result,
 								int n){
 		for (int i = 1; i <= n; i++){
-			for (int j = 1; j<= n; j++){
+			for (int j = 1; j <= n; j++){
 				int x = matrix1.getNodeVal(i, j);
 				int y = matrix2.getNodeVal(i, j);
 				int z = x - y;
 				
 				if(z != 0){
 					Node node = new Node(i, j, z, null, null);
+					insertNode(result, node);
+				}
+			}
+		}
+	}
+	
+	public static void scalar(int num, linkedList matrix, linkedList result, int n){
+		for(int i = 1; i <= n; i++){
+			for(int j = 1; j <= n; j++){
+				int x = matrix.getNodeVal(i, j);
+				int y = x * num;
+				
+				if(y != 0){
+					Node node = new Node(i, j, y, null, null);
 					insertNode(result, node);
 				}
 			}
