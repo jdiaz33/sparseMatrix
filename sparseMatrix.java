@@ -317,6 +317,11 @@ public class sparseMatrix {
 		scalar(3, F, P, n);
 		System.out.println("MATRIX P = 3 * F: ");
 		P.printMatrix(n);
+		
+		System.out.println("====================== STEP 3 ==========================");
+		
+		linkedList Q = new linkedList();
+		matrixMultiply(A, B, Q, n);
 	}
 	
 /********************************* STATIC METHODS ******************************/
@@ -378,5 +383,45 @@ public class sparseMatrix {
 				}
 			}
 		}
+	}
+	
+	public static void matrixMultiply(linkedList matrix1,
+									  linkedList matrix2,
+									  linkedList result,
+									  int n){
+		int [] rows = new int[n];
+		int [] cols = new int[n];
+		
+		int row = 1;
+		while(row <= n){
+			for(int i = 0; i < n; i++){
+				rows[i] = matrix1.getNodeVal(row, i+1);
+			}
+			int col = 1;
+			while(col <= n){
+				for(int j = 0; j < n; j++){
+					cols[j] = matrix2.getNodeVal(j+1, col);
+				}
+				System.out.println(rows[0] + " " + cols[0]);
+				System.out.println(rows[1] + " " + cols[1]);
+				System.out.println(rows[2] + " " + cols[2]);
+				System.out.println(rows[3] + " " + cols[3]);
+				int nodeVal = computeVal(rows, cols);
+				System.out.println("Node Value: " + nodeVal);
+				System.out.println("-----------------------------");
+				col++;
+			}
+			row++;
+		}
+	}
+	
+	public static int computeVal(int[] row, int[] col){
+		int val = 0;
+		int cnt = 0;
+		while(cnt < row.length){
+			val = val + (row[cnt] * col[cnt]);
+			cnt++;
+		}
+		return val;
 	}
 }
