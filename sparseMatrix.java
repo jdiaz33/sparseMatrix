@@ -320,8 +320,11 @@ public class sparseMatrix {
 		
 		System.out.println("====================== STEP 3 ==========================");
 		
+		//Q = A * B
 		linkedList Q = new linkedList();
 		matrixMultiply(A, B, Q, n);
+		System.out.println("MATRIX Q = A * B: ");
+		Q.printMatrix(n);
 	}
 	
 /********************************* STATIC METHODS ******************************/
@@ -402,13 +405,11 @@ public class sparseMatrix {
 				for(int j = 0; j < n; j++){
 					cols[j] = matrix2.getNodeVal(j+1, col);
 				}
-				System.out.println(rows[0] + " " + cols[0]);
-				System.out.println(rows[1] + " " + cols[1]);
-				System.out.println(rows[2] + " " + cols[2]);
-				System.out.println(rows[3] + " " + cols[3]);
 				int nodeVal = computeVal(rows, cols);
-				System.out.println("Node Value: " + nodeVal);
-				System.out.println("-----------------------------");
+				if(nodeVal != 0){
+					Node node = new Node(row, col, nodeVal, null, null);
+					insertNode(result, node);
+				}
 				col++;
 			}
 			row++;
