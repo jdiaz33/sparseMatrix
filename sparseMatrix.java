@@ -325,6 +325,42 @@ public class sparseMatrix {
 		matrixMultiply(A, B, Q, n);
 		System.out.println("MATRIX Q = A * B: ");
 		Q.printMatrix(n);
+		
+		//R = B * D
+		linkedList R = new linkedList();
+		matrixMultiply(B, D, R, n);
+		System.out.println("MATRIX R = B * D: ");
+		R.printMatrix(n);
+		
+		//S = E * G
+		linkedList S = new linkedList();
+		matrixMultiply(E, G, S, n);
+		System.out.println("MATRIX S = E * G: ");
+		S.printMatrix(n);
+		
+		//T = G * E
+		linkedList T = new linkedList();
+		matrixMultiply(G, E, T, n);
+		System.out.println("MATRIX T = G * E: ");
+		T.printMatrix(n);
+		
+		//U = Q * H
+		linkedList U = new linkedList();
+		matrixMultiply(Q, H, U, n);
+		System.out.println("MATRIX U = Q * H: ");
+		U.printMatrix(n);
+		
+		//V = S * T
+		linkedList V = new linkedList();
+		matrixMultiply(S, T, V, n);
+		System.out.println("MATRIX V = S * T: ");
+		V.printMatrix(n);
+		
+		//W = R * S
+		linkedList W = new linkedList();
+		matrixMultiply(R, S, W, n);
+		System.out.println("MATRIX W = R * S: ");
+		W.printMatrix(n);
 	}
 	
 /********************************* STATIC METHODS ******************************/
