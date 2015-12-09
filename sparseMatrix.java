@@ -83,35 +83,39 @@ class linkedList {
 		
 		Node temp = start;
 		boolean found;
-		
-		for (int i = 1; i <= m; i++) {
-			for (int j = 1; j <= m; j++) {
-				found = false;
-				while (temp.getNextRow() != null) {
-					if(temp.getRow() == i && temp.getCol() == j) {
-						System.out.print(temp.getVal() + "\t");
-						found = true;
-						temp = start;
-						break;
-					}
-					else {
-						temp = temp.getNextRow();
-					}
-				}
-				if (found == false) {
-					if (temp.getRow() == i && temp.getCol() == j) {
-						System.out.print(temp.getVal() + "\t");
-						temp = start;
-					}
-					else {
-						System.out.print("0\t");
-						temp = start;
-					}
-				}
-			}
-			System.out.print("\n");
+		if(temp == null){
+			printEmptyMatrix(m);
 		}
-		System.out.println("\n");
+		else {
+			for (int i = 1; i <= m; i++) {
+				for (int j = 1; j <= m; j++) {
+					found = false;
+					while (temp.getNextRow() != null) {
+						if(temp.getRow() == i && temp.getCol() == j) {
+							System.out.print(temp.getVal() + "\t");
+							found = true;
+							temp = start;
+							break;
+						}
+						else {
+							temp = temp.getNextRow();
+						}
+					}
+					if (found == false) {
+						if (temp.getRow() == i && temp.getCol() == j) {
+							System.out.print(temp.getVal() + "\t");
+							temp = start;
+						}
+						else {
+							System.out.print("0\t");
+							temp = start;
+						}
+					}
+				}
+				System.out.print("\n");
+			}
+			System.out.println("\n");
+		}
 	}
 	
 	public void printList() {
@@ -143,6 +147,16 @@ class linkedList {
 			x++;
 		}
 		return 0;
+	}
+	
+	public void printEmptyMatrix(int m) {
+		for(int i = 1; i <= m; i++){
+			for(int j = 1; j <= m; j++){
+				System.out.print("0\t");
+			}
+			System.out.print("\n");
+		}
+		System.out.println("\n");
 	}
 }
 
@@ -361,6 +375,42 @@ public class sparseMatrix {
 		matrixMultiply(R, S, W, n);
 		System.out.println("MATRIX W = R * S: ");
 		W.printMatrix(n);
+
+		//X = D^5
+		linkedList X = new linkedList();
+		linkedList temp = new linkedList();
+		int power = 5;
+		for(int i = 1; i < power; i++){
+			if(i > 1){
+				temp = X;
+			}
+			else {
+				temp = D;
+			}
+			X = new linkedList();
+			matrixMultiply(temp, D, X, n);
+			X.printMatrix(n);
+		}
+		System.out.println("MATRIX X = D^5: ");
+		X.printMatrix(n);
+
+		//Y = C^8
+		linkedList Y = new linkedList();
+		temp = new linkedList();
+		power = 8;
+		for(int i = 1; i < power; i++){
+			if(i > 1){
+				temp = Y;
+				
+			}
+			else {
+				temp = C;
+			}
+			Y = new linkedList();
+			matrixMultiply(temp, C, Y, n);
+		}
+		System.out.println("MATRIX Y = C^8: ");
+		Y.printMatrix(n);
 	}
 	
 /********************************* STATIC METHODS ******************************/
