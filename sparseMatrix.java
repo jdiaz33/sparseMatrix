@@ -37,6 +37,9 @@ class Node {
 	public int getVal () { return val; }
 	public Node getNextRow () { return nextRow; }
 	public Node getNextCol () { return nextCol; }
+	
+	public void setRow (int oldCol){row = oldCol;}
+	public void setCol (int oldRow){col = oldRow;}
 }
 
 /*********************************************************************************/
@@ -157,6 +160,20 @@ class linkedList {
 			System.out.print("\n");
 		}
 		System.out.println("\n");
+	}
+	
+	public linkedList transpose(){
+		Node temp = start;
+		int x = 0;
+		while(x < size){
+			int oldRow = temp.getRow();
+			int oldCol = temp.getCol();
+			temp.setRow(oldCol);
+			temp.setCol(oldRow);
+			temp = temp.getNextRow();
+			x++;
+		}
+		return this;
 	}
 }
 
@@ -501,6 +518,12 @@ public class sparseMatrix {
 		}
 		System.out.println("MATRIX AD = E^3: ");
 		AD.printMatrix(n);
+		
+		//AE = transpose(F)
+		linkedList AE = new linkedList();
+		AE = F.transpose();
+		System.out.println("MATRIX AE = transpose(F): ");
+		AE.printMatrix(n);
 	}
 	
 /********************************* STATIC METHODS ******************************/
