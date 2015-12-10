@@ -411,6 +411,96 @@ public class sparseMatrix {
 		}
 		System.out.println("MATRIX Y = C^8: ");
 		Y.printMatrix(n);
+		
+		//Z = B^10
+		linkedList Z = new linkedList();
+		temp = new linkedList();
+		power = 10;
+		for(int i = 1; i < power; i++){
+			if(i > 1){
+				temp = Z;
+				
+			}
+			else {
+				temp = B;
+			}
+			Z = new linkedList();
+			matrixMultiply(temp, B, Z, n);
+		}
+		System.out.println("MATRIX Z = B^10: ");
+		Z.printMatrix(n);
+		
+		//AA = F^2
+		linkedList AA = new linkedList();
+		temp = new linkedList();
+		power = 2;
+		for(int i = 1; i < power; i++){
+			if(i > 1){
+				temp = AA;
+				
+			}
+			else {
+				temp = F;
+			}
+			AA = new linkedList();
+			matrixMultiply(temp, F, AA, n);
+		}
+		System.out.println("MATRIX AA = F^2: ");
+		AA.printMatrix(n);
+		
+		//AB = G^3
+		linkedList AB = new linkedList();
+		temp = new linkedList();
+		power = 3;
+		for(int i = 1; i < power; i++){
+			if(i > 1){
+				temp = AB;
+				
+			}
+			else {
+				temp = G;
+			}
+			AB = new linkedList();
+			matrixMultiply(temp, G, AB, n);
+		}
+		System.out.println("MATRIX AB = G^3: ");
+		AB.printMatrix(n);
+		
+		//AC = A^4
+		linkedList AC = new linkedList();
+		temp = new linkedList();
+		power = 4;
+		for(int i = 1; i < power; i++){
+			if(i > 1){
+				temp = AC;
+				
+			}
+			else {
+				temp = A;
+			}
+			AC = new linkedList();
+			matrixMultiply(temp, A, AC, n);
+		}
+		System.out.println("MATRIX AC = A^4: ");
+		AC.printMatrix(n);
+		
+		//AD = E^3
+		linkedList AD = new linkedList();
+		temp = new linkedList();
+		power = 3;
+		for(int i = 1; i < power; i++){
+			if(i > 1){
+				temp = AD;
+				
+			}
+			else {
+				temp = E;
+			}
+			AD = new linkedList();
+			matrixMultiply(temp, E, AD, n);
+		}
+		System.out.println("MATRIX AD = E^3: ");
+		AD.printMatrix(n);
 	}
 	
 /********************************* STATIC METHODS ******************************/
