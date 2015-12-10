@@ -406,7 +406,7 @@ public class sparseMatrix {
 			}
 			X = new linkedList();
 			matrixMultiply(temp, D, X, n);
-			X.printMatrix(n);
+			//X.printMatrix(n);
 		}
 		System.out.println("MATRIX X = D^5: ");
 		X.printMatrix(n);
@@ -524,6 +524,51 @@ public class sparseMatrix {
 		AE = F.transpose();
 		System.out.println("MATRIX AE = transpose(F): ");
 		AE.printMatrix(n);
+		
+		//AF = transpose(E)
+		linkedList AF = new linkedList();
+		AF = E.transpose();
+		System.out.println("MATRIX AF = transpose(E): ");
+		AF.printMatrix(n);
+		
+		//AG = transpose(V)
+		linkedList AG = new linkedList();
+		AG = V.transpose();
+		System.out.println("MATRIX AG = transpose(V): ");
+		AG.printMatrix(n);
+		
+		//AH = transpose(L)
+		linkedList AH = new linkedList();
+		AH = L.transpose();
+		System.out.println("MATRIX AH = transpose(L): ");
+		AH.printMatrix(n);
+		
+		//AI = transpose(A+B)-transpose(A)-transpose(B)
+		//A+B = G
+		linkedList transG = new linkedList();
+		transG = G.transpose();
+		linkedList transA = new linkedList();
+		transA = A.transpose();
+		linkedList transB = new linkedList();
+		transB = B.transpose();
+		linkedList result1 = new linkedList();
+		subtract(transG, transA, result1, n);
+		linkedList AI = new linkedList();
+		subtract(result1, transB, AI, n);
+		System.out.println("MATRIX AI = transpose(A+B)-transpose(A)-transpose(B): ");
+		AI.printMatrix(n);
+		
+		//AJ = transpose(A*B)-(transpose(B)*transpose(A))
+		//A*B = Q
+		//transpose(B) = transB
+		//transpose(A) = transA
+		result1 = Q.transpose();
+		linkedList result2 = new linkedList();
+		matrixMultiply(transB, transA, result2, n);
+		linkedList AJ = new linkedList();
+		subtract(result1, result2, AJ, n);
+		System.out.println("MATRIX AJ = transpose(A*B)-(transpose(B)*transpose(A)): ");
+		AJ.printMatrix(n);
 	}
 	
 /********************************* STATIC METHODS ******************************/
